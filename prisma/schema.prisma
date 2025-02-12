@@ -7,4 +7,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
+model Product {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String
+  price        String  
+  image        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  sellerId     Int
+  seller       Seller     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  categoryId   Int
+  category     Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+model Seller {
+  id        Int      @id @default(autoincrement())
+  name      String
+  address   String
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  products  Product[]
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  products    Product[]
+}
