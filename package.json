@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "genprim": "npx prisma generate",
+    "studio": "npx prisma studio"
   },
   "author": "Kevin Elvio",
   "license": "ISC",
