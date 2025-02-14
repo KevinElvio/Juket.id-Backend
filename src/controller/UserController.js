@@ -2,8 +2,8 @@ const UsersModel = require('../models/UserModel');
 
 const readUser = async (req, res) => {
     try {
-        const users = await UsersModel.readUser(id);
-        if (users.id != 1) {
+        const users = await UsersModel.readUser();
+        if (users.length === 0) {
             return res.status(404).json({
                 status: 'failed',
                 message: 'User not found'

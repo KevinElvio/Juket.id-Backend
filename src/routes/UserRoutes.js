@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const UserController = require('../controllers/UserController');
-const accessValidation = require('../middleware/accessValidation');
+const UserController = require('../controller/UserController');
+// const accessValidation = require('../middleware/accessValidation');
 
-router.get('/', accessValidation, UserController.readUser)
+router.get('/', UserController.readUser)
 
-exports.router = router;
+module.exports = router;
