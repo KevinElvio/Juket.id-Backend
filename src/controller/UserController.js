@@ -33,12 +33,6 @@ const updateUser = async (req, res) => {
                 message: 'Password is required'
             });
         }
-        // if(id !== "1"){
-        //     return res.status(400).json({
-        //         status: 'failed',
-        //         message: 'You do not have permission to access this resource'
-        //     });
-        // }
         const user = await UsersModel.updateUser(id, data);
         res.status(200).json({
             status: 'success',
