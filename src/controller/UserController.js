@@ -23,6 +23,39 @@ const readUser = async (req, res) => {
     }
 }
 
+const updateUser = async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+    try {
+        if(data.password == null || data.password == ''){
+            return res.status(400).json({
+                status: 'failed',
+                message: 'Password is required'
+            });
+        }
+        // if(id !== "1"){
+        //     return res.status(400).json({
+        //         status: 'failed',
+        //         message: 'You do not have permission to access this resource'
+        //     });
+        // }
+        const user = await UsersModel.updateUser(id, data);
+        res.status(200).json({
+            status: 'success',
+            message: 'User update password successfully',
+            data: user
+        });
+
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
-    readUser
+    readUser,
+    updateUser
 }
