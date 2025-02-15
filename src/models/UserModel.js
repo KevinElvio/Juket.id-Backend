@@ -14,8 +14,17 @@ async function updateUser(id, data) {
     });
 }
 
+async function findUserByEmail(email) {
+    return await prisma.user.findMany({
+        where: {
+            email: email
+        }
+    });
+}
+
 
 module.exports = {
     readUser,
-    updateUser
+    updateUser,
+    findUserByEmail
 }
