@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await UsersModel.findUserByEmail({ email });
+        const user = await UsersModel.findUserByEmail(email);
         if (user.length === 0) {
             res.status(404).json({
                 status: 'failed',
