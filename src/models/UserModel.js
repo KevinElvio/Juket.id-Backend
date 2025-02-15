@@ -14,6 +14,7 @@ async function updateUser(id, data) {
     });
 }
 
+
 module.exports = {
     readUser,
     updateUser
