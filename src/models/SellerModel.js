@@ -29,10 +29,19 @@ async function updateSeller(id, data) {
     });
 }
 
+async function deleteSeller(id) {
+    return await prisma.seller.delete({
+        where: {
+            id: parseInt(id)
+        }
+    });
+}
+
 
 module.exports = {
     createSeller,
     readSeller,
     readSellerById,
-    updateSeller
+    updateSeller,
+    deleteSeller
 }
