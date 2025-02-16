@@ -8,7 +8,12 @@ async function createSeller(data) {
     });
 }
 
+async function readSeller() {
+    return await prisma.seller.findMany();
+}
+
 
 module.exports = {
-    createSeller
+    createSeller,
+    readSeller
 }
