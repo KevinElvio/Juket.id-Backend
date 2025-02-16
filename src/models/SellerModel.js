@@ -20,9 +20,19 @@ async function readSellerById(id) {
     });
 }
 
+async function updateSeller(id, data) {
+    return await prisma.seller.update({
+        where: {
+            id: parseInt(id)
+        },
+        data
+    });
+}
+
 
 module.exports = {
     createSeller,
     readSeller,
-    readSellerById
+    readSellerById,
+    updateSeller
 }

@@ -5,5 +5,6 @@ const SellerController = require('../controller/SellerController')
 router.get('/', SellerController.read)
 router.get('/:id', SellerController.readById)
 router.post('/', SellerController.create)
+router.put('/:id', SellerController.update)
 
 module.exports = router
