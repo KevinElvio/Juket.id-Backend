@@ -65,8 +65,28 @@ const readById = async (req, res) => {
     }
 }
 
+const update = async(req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+    try {
+        const seller = await sellerModel.updateSeller(id, data);
+        res.status(200).json({
+            status: 'success',
+            message: 'Seller update successfully',
+            data: seller
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
     read,
-    readById
+    readById,
+    update
 }
