@@ -4,16 +4,10 @@ const create = async (req, res) => {
     const data = req.body;
     try {
         const seller = await sellerModel.createSeller(data);
-        compilation = {
-            name : seller.name,
-            address : seller.address,
-            phone : seller.phone,
-            
-        }
         res.status(201).json({
             status: 'success',
             message: 'Seller create successfully',
-            data: users
+            data: seller
         });
     } catch (error) {
         res.status(400).json({
