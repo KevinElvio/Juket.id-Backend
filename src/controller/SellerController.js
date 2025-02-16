@@ -41,7 +41,32 @@ const read = async (req, res) => {
     }
 }
 
+const readById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const seller = await sellerModel.readSellerById(id);
+        if (seller === null) {
+            return res.status(404).json({
+                status: 'failed',
+                message: 'Seller not found'
+            });
+        }
+        res.status(200).json({
+            status: 'success',
+            message: 'Seller retrieved successfully',
+            data: seller
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
-    read
+    read,
+    readById
 }
