@@ -12,8 +12,17 @@ async function readSeller() {
     return await prisma.seller.findMany();
 }
 
+async function readSellerById(id) {
+    return await prisma.seller.findUnique({
+        where: {
+            id: parseInt(id)
+        }
+    });
+}
+
 
 module.exports = {
     createSeller,
-    readSeller
+    readSeller,
+    readSellerById
 }
