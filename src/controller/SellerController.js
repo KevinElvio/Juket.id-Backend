@@ -84,9 +84,28 @@ const update = async(req, res) => {
     }
 }
 
+const destroy = async(req, res) => {
+    const { id } = req.params;
+    try {
+        const seller = await sellerModel.deleteSeller(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'Seller delete successfully',
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
+
 module.exports = {
     create,
     read,
     readById,
-    update
+    update,
+    destroy
 }
