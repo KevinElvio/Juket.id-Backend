@@ -7,6 +7,11 @@ const createCategory = async (data) => {
     });
 }
 
+const readCategory = async () => {
+    return await prisma.category.findMany();
+}
+
 module.exports = {
-    createCategory
+    createCategory,
+    readCategory
 }
