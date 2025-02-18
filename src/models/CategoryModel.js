@@ -11,7 +11,17 @@ const readCategory = async () => {
     return await prisma.category.findMany();
 }
 
+const updateCategory = async (id, data) => {
+    return await prisma.category.update({
+        where: {
+            id: parseInt(id)
+        },
+        data
+    });
+}
+
 module.exports = {
     createCategory,
-    readCategory
+    readCategory,
+    updateCategory
 }
