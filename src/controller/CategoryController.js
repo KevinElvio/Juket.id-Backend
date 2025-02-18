@@ -54,8 +54,26 @@ const update = async (req, res) => {
     }
 }
 
+const destroy = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const category = await categoryModel.deleteCategory(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'Category delete successfully',
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
     read,
-    update
+    update,
+    destroy
 };
