@@ -1,12 +1,12 @@
-// const { PrismaClient } = require('@prisma/client');
-// const prisma = new PrismaClient();
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-// async function createProduct(data) {
-//     return await prisma.product.create({
-//         data
-//     });
-// }
+async function createProduct(data) {
+    return await prisma.product.create({
+        data
+    });
+}
 
-// module.exports = {
-//     createProduct
-// }
+module.exports = {
+    createProduct
+}
