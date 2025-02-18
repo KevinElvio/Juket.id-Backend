@@ -35,7 +35,27 @@ const read = async (req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+    try {
+        const category = await categoryModel.updateCategory(id, data);
+        res.status(200).json({
+            status: 'success',
+            message: 'Category update successfully',
+            data: category
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
-    read
+    read,
+    update
 };
