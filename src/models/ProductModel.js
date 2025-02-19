@@ -19,8 +19,18 @@ async function readProductById(id) {
     });
 }
 
+async function updateProduct(id, data) {
+    return await prisma.product.update({
+        where: {
+            id: parseInt(id)
+        },
+        data
+    });
+}
+
 module.exports = {
     createProduct,
     readProduct,
-    readProductById
+    readProductById,
+    updateProduct
 }
