@@ -11,7 +11,16 @@ async function readProduct() {
     return await prisma.product.findMany();
 }
 
+async function readProductById(id) {
+    return await prisma.product.findUnique({
+        where: {
+            id: parseInt(id)
+        }
+    });
+}
+
 module.exports = {
     createProduct,
-    readProduct
+    readProduct,
+    readProductById
 }
