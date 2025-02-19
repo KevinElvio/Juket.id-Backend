@@ -7,6 +7,11 @@ async function createProduct(data) {
     });
 }
 
+async function readProduct() {
+    return await prisma.product.findMany();
+}
+
 module.exports = {
-    createProduct
+    createProduct,
+    readProduct
 }
