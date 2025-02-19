@@ -28,9 +28,18 @@ async function updateProduct(id, data) {
     });
 }
 
+async function deleteProduct(id) {
+    return await prisma.product.delete({
+        where: {
+            id: parseInt(id)
+        }
+    });
+}
+
 module.exports = {
     createProduct,
     readProduct,
     readProductById,
-    updateProduct
+    updateProduct,
+    deleteProduct
 }
