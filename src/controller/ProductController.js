@@ -53,8 +53,60 @@ const readById = async (req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    const {id} = req.params;
+    const data = req.body;
+    try {
+        if (!await productModel.readProductById(id)) {
+            res.status(404).json({
+                status: 'failed',
+                message: 'Product not found'
+            });
+            return;
+        }
+        const product = await productModel.updateProduct(id, data);
+        res.status(200).json({
+            status: 'success',
+            message: 'Product updated successfully',
+            data: product
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
+const destroy = async (req, res) => {
+    const {id} = req.params;
+    try {
+        if (!await productModel.readProductById(id)) {
+            res.status(404).json({
+                status: 'failed',
+                message: 'Product not found'
+            });
+            return;
+        }
+        await productModel.deleteProduct(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'Product deleted successfully'
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
     read,
-    readById
+    readById,
+    update,
+    destroy
 }
