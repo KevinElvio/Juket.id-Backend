@@ -72,9 +72,34 @@ const update = async (req, res) => {
     }
 }
 
+const destroy = async (req, res) => {
+    const {id} = req.params;
+    try {
+        if (!await productModel.readProductById(id)) {
+            res.status(404).json({
+                status: 'failed',
+                message: 'Product not found'
+            });
+            return;
+        }
+        await productModel.deleteProduct(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'Product deleted successfully'
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
     read,
     readById,
-    update
+    update,
+    destroy
 }
