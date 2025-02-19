@@ -18,6 +18,24 @@ const create = async (req, res) => {
     }
 }
 
+const read = async (req, res) => {
+    try {
+        const products = await productModel.readProduct();
+        res.status(200).json({
+            status: 'success',
+            message: 'Products retrieved successfully',
+            data: products
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
-    create
+    create,
+    read
 }
