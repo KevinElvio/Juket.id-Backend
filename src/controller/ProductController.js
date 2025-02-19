@@ -57,6 +57,13 @@ const update = async (req, res) => {
     const {id} = req.params;
     const data = req.body;
     try {
+        if (!await productModel.readProductById(id)) {
+            res.status(404).json({
+                status: 'failed',
+                message: 'Product not found'
+            });
+            return;
+        }
         const product = await productModel.updateProduct(id, data);
         res.status(200).json({
             status: 'success',
