@@ -14,7 +14,7 @@ async function readProduct() {
 async function readProductById(id) {
     return await prisma.product.findUnique({
         where: {
-            id
+            id: parseInt(id)
         }
     });
 }

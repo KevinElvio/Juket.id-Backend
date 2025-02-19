@@ -35,7 +35,26 @@ const read = async (req, res) => {
     }
 }
 
+const readById = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const product = await productModel.readProductById(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'Product retrieved successfully',
+            data: product
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
-    read
+    read,
+    readById
 }
