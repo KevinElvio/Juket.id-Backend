@@ -103,10 +103,29 @@ const destroy = async (req, res) => {
     }
 }
 
+const search = async (req, res) => {
+    const {search} = req.query;
+    try {
+        const products = await productModel.searchProduct(search);
+        res.status(200).json({
+            status: 'success',
+            message: 'Products retrieved successfully',
+            data: products
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: "Bad request",
+            serverMessage: error.message
+        });
+    }
+}
+
 module.exports = {
     create,
     read,
     readById,
     update,
-    destroy
+    destroy,
+    search
 }
