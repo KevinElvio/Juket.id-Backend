@@ -7,8 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "studio": "npx prisma studio",
-    "generate": "npx prisma generate",
-    "build" : "npm run generate"
+    "generate": "npx prisma generate"
   },
   "author": "Kevin Elvio",
   "license": "ISC",
