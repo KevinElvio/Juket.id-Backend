@@ -53,7 +53,18 @@ const readById = async (req, res) => {
         res.status(200).json({
             status: 'success',
             message: 'Product retrieved successfully',
-            data: product
+            data: products.map(product => {
+                id = product.id;
+                name = product.name;
+                description = product.description;
+                price = product.price;
+                image = product.image.split(",");
+                createAt = product.createAt;
+                updatedAt = product.updatedAt;
+                sellerId = product.sellerId;
+                categoryId = product.categoryId;
+                return { id, name, description, price, image, createAt, updatedAt, sellerId, categoryId };
+            }) 
         });
     } catch (error) {
         res.status(400).json({
