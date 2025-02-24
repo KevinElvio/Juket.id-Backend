@@ -3,7 +3,18 @@ const productModel = require('../models/ProductModel');
 const create = async (req, res) => {
     const data = req.body;
     try {
-        const product = await productModel.createProduct(data);
+        if (req.file) {
+            data.image = req.file.path
+        }
+        const parse = {
+            name: data.name,
+            description: data.description,
+            price: data.price,
+            image: data.image,
+            sellerId: parseInt(data.sellerId),
+            categoryId: parseInt(data.categoryId)
+        }
+        const product = await productModel.createProduct(parse);
         res.status(201).json({
             status: 'success',
             message: 'Product created successfully',
