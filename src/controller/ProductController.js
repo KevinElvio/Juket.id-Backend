@@ -30,11 +30,11 @@ const read = async (req, res) => {
                 description = product.description;
                 price = product.price;
                 image = product.image.split(",");
-                createAt = product.createAt;
+                createdAt = product.createdAt;
                 updatedAt = product.updatedAt;
                 sellerId = product.sellerId;
                 categoryId = product.categoryId;
-                return { id, name, description, price, image, createAt, updatedAt, sellerId, categoryId };
+                return { id, name, description, price, image, createdAt, updatedAt, sellerId, categoryId };
             }) 
         });
     } catch (error) {
@@ -59,11 +59,11 @@ const readById = async (req, res) => {
                 description = product.description;
                 price = product.price;
                 image = product.image.split(",");
-                createAt = product.createAt;
+                createdAt = product.createdAt;
                 updatedAt = product.updatedAt;
                 sellerId = product.sellerId;
                 categoryId = product.categoryId;
-                return { id, name, description, price, image, createAt, updatedAt, sellerId, categoryId };
+                return { id, name, description, price, image, createdAt, updatedAt, sellerId, categoryId };
             }) 
         });
     } catch (error) {
