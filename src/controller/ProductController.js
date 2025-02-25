@@ -46,7 +46,7 @@ const read = async (req, res) => {
                 sellerId = product.sellerId;
                 categoryId = product.categoryId;
                 return { id, name, description, price, image, createdAt, updatedAt, sellerId, categoryId };
-            }) 
+            })
         });
     } catch (error) {
         res.status(400).json({
@@ -58,24 +58,23 @@ const read = async (req, res) => {
 }
 
 const readById = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     try {
-        const product = await productModel.readProductById(id);
+        const products = await productModel.readProductById(id);
         res.status(200).json({
             status: 'success',
             message: 'Product retrieved successfully',
-            data: product.map(product => {
-                id = product.id;
-                name = product.name;
-                description = product.description;
-                price = product.price;
-                image = product.image.split(",");
-                createdAt = product.createdAt;
-                updatedAt = product.updatedAt;
-                sellerId = product.sellerId;
-                categoryId = product.categoryId;
-                return { id, name, description, price, image, createdAt, updatedAt, sellerId, categoryId };
-            }) 
+            data: {
+                id: products.id,
+                name: products.name,
+                description: products.description,
+                price: products.price,
+                image: products.image.split(","),
+                createdAt: products.createdAt,
+                updatedAt: products.updatedAt,
+                sellerId: products.sellerId,
+                categoryId: products.categoryId
+            }
         });
     } catch (error) {
         res.status(400).json({
@@ -87,7 +86,7 @@ const readById = async (req, res) => {
 }
 
 const update = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const data = req.body;
     try {
         if (!await productModel.readProductById(id)) {
@@ -113,7 +112,7 @@ const update = async (req, res) => {
 }
 
 const destroy = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     try {
         if (!await productModel.readProductById(id)) {
             res.status(404).json({
@@ -137,7 +136,7 @@ const destroy = async (req, res) => {
 }
 
 const search = async (req, res) => {
-    const {search} = req.query;
+    const { search } = req.query;
     try {
         const products = await productModel.searchProduct(search);
         res.status(200).json({
