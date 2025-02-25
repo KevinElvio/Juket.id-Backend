@@ -16,7 +16,7 @@ app.use(cors());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join("uploads"));
+    cb(null, path.join("/uploads"));
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`)
@@ -25,7 +25,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use('/user', UserRoutes)
 app.use('/auth', AuthRoutes)
 app.use('/seller', SellerRoutes)
