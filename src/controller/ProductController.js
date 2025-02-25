@@ -4,7 +4,7 @@ const create = async (req, res) => {
     const data = req.body;
     try {
         if (req.file) {
-            data.image = req.file.path
+            data.image = `/uploads/${req.file.filename}`
         }
         const parse = {
             name: data.name,

@@ -25,6 +25,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use('/user', UserRoutes)
 app.use('/auth', AuthRoutes)
 app.use('/seller', SellerRoutes)
