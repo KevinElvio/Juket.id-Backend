@@ -64,7 +64,7 @@ const readById = async (req, res) => {
         res.status(200).json({
             status: 'success',
             message: 'Product retrieved successfully',
-            data: products.map(product => {
+            data: product.map(product => {
                 id = product.id;
                 name = product.name;
                 description = product.description;
